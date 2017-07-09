@@ -56,7 +56,7 @@ namespace RichJoslin
 
 			public static void GenerateWalls(BallGrid ballGrid)
 			{
-				Transform extentsTF = ballGrid.transform.FindChild("Extents");
+				Transform extentsTF = ballGrid.transform.Find("Extents");
 
 				// shift the walls over slightly for any even sized rows (because the grid ends up offset)
 				float zShift = ballGrid.zMax + ballGrid.zMin;
@@ -79,7 +79,7 @@ namespace RichJoslin
 				float yWallDim = (ballGrid.ySize + 1f) / 2f;
 				float xWallDim = (ballGrid.xSize + 1f) / 2f;
 
-				Transform zMinExtentTF = extentsTF.FindChild("z min");
+				Transform zMinExtentTF = extentsTF.Find("z min");
 				if (ballGrid.zMinWall)
 				{
 					zMinExtentTF.transform.localPosition = Vector3.back * zPadding;
@@ -87,7 +87,7 @@ namespace RichJoslin
 					wallCube.transform.localScale = new Vector3(xWallDim, yWallDim, 1f);
 				}
 
-				Transform zMaxExtentTF = extentsTF.FindChild("z max");
+				Transform zMaxExtentTF = extentsTF.Find("z max");
 				if (ballGrid.zMaxWall)
 				{
 					zMaxExtentTF.transform.localPosition = Vector3.forward * zPadding;
@@ -95,7 +95,7 @@ namespace RichJoslin
 					wallCube.transform.localScale = new Vector3(xWallDim, yWallDim, 1f);
 				}
 
-				Transform yMinExtentTF = extentsTF.FindChild("y min");
+				Transform yMinExtentTF = extentsTF.Find("y min");
 				if (ballGrid.yMinWall)
 				{
 					yMinExtentTF.transform.localPosition = Vector3.down * yPadding;
@@ -103,7 +103,7 @@ namespace RichJoslin
 					wallCube.transform.localScale = new Vector3(xWallDim, 1f, zWallDim);
 				}
 
-				Transform yMaxExtentTF = extentsTF.FindChild("y max");
+				Transform yMaxExtentTF = extentsTF.Find("y max");
 				if (ballGrid.yMaxWall)
 				{
 					yMaxExtentTF.transform.localPosition = Vector3.up * yPadding;
@@ -111,7 +111,7 @@ namespace RichJoslin
 					wallCube.transform.localScale = new Vector3(xWallDim, 1f, zWallDim);
 				}
 
-				Transform xMinExtentTF = extentsTF.FindChild("x min");
+				Transform xMinExtentTF = extentsTF.Find("x min");
 				if (ballGrid.xMinWall)
 				{
 					xMinExtentTF.transform.localPosition = Vector3.left * xPadding;
@@ -119,7 +119,7 @@ namespace RichJoslin
 					wallCube.transform.localScale = new Vector3(1f, yWallDim, zWallDim);
 				}
 
-				Transform xMaxExtentTF = extentsTF.FindChild("x max");
+				Transform xMaxExtentTF = extentsTF.Find("x max");
 				if (ballGrid.xMaxWall)
 				{
 					xMaxExtentTF.transform.localPosition = Vector3.right * xPadding;

@@ -100,34 +100,34 @@ namespace RichJoslin
 
 			public void ClearWalls()
 			{
-				Transform extentsTF = this.transform.FindChild("Extents");
+				Transform extentsTF = this.transform.Find("Extents");
 
-				Transform zMinExtentTF = extentsTF.FindChild("z min");
+				Transform zMinExtentTF = extentsTF.Find("z min");
 				while (zMinExtentTF.childCount > 0)
 				{
 					PoolManager.I.Return(zMinExtentTF.GetChild(0));
 				}
-				Transform zMaxExtentTF = extentsTF.FindChild("z max");
+				Transform zMaxExtentTF = extentsTF.Find("z max");
 				while (zMaxExtentTF.childCount > 0)
 				{
 					PoolManager.I.Return(zMaxExtentTF.GetChild(0));
 				}
-				Transform yMinExtentTF = extentsTF.FindChild("y min");
+				Transform yMinExtentTF = extentsTF.Find("y min");
 				while (yMinExtentTF.childCount > 0)
 				{
 					PoolManager.I.Return(yMinExtentTF.GetChild(0));
 				}
-				Transform yMaxExtentTF = extentsTF.FindChild("y max");
+				Transform yMaxExtentTF = extentsTF.Find("y max");
 				while (yMaxExtentTF.childCount > 0)
 				{
 					PoolManager.I.Return(yMaxExtentTF.GetChild(0));
 				}
-				Transform xMinExtentTF = extentsTF.FindChild("x min");
+				Transform xMinExtentTF = extentsTF.Find("x min");
 				while (xMinExtentTF.childCount > 0)
 				{
 					PoolManager.I.Return(xMinExtentTF.GetChild(0));
 				}
-				Transform xMaxExtentTF = extentsTF.FindChild("x max");
+				Transform xMaxExtentTF = extentsTF.Find("x max");
 				while (xMaxExtentTF.childCount > 0)
 				{
 					PoolManager.I.Return(xMaxExtentTF.GetChild(0));
@@ -136,7 +136,7 @@ namespace RichJoslin
 
 			public void GenerateWalls()
 			{
-				Transform extentsTF = this.transform.FindChild("Extents");
+				Transform extentsTF = this.transform.Find("Extents");
 
 				// shift the walls over slightly for any even sized rows (because the grid ends up offset)
 				float zShift = zMax + zMin;
@@ -159,7 +159,7 @@ namespace RichJoslin
 				float yWallDim = (this.ySize + 1f) / 2f;
 				float xWallDim = (this.xSize + 1f) / 2f;
 
-				Transform zMinExtentTF = extentsTF.FindChild("z min");
+				Transform zMinExtentTF = extentsTF.Find("z min");
 				if (zMinWall)
 				{
 					zMinExtentTF.transform.localPosition = Vector3.back * zPadding;
@@ -167,7 +167,7 @@ namespace RichJoslin
 					wallCube.transform.localScale = new Vector3(xWallDim, yWallDim, 1f);
 				}
 
-				Transform zMaxExtentTF = extentsTF.FindChild("z max");
+				Transform zMaxExtentTF = extentsTF.Find("z max");
 				if (zMaxWall)
 				{
 					zMaxExtentTF.transform.localPosition = Vector3.forward * zPadding;
@@ -175,7 +175,7 @@ namespace RichJoslin
 					wallCube.transform.localScale = new Vector3(xWallDim, yWallDim, 1f);
 				}
 
-				Transform yMinExtentTF = extentsTF.FindChild("y min");
+				Transform yMinExtentTF = extentsTF.Find("y min");
 				if (yMinWall)
 				{
 					yMinExtentTF.transform.localPosition = Vector3.down * yPadding;
@@ -183,7 +183,7 @@ namespace RichJoslin
 					wallCube.transform.localScale = new Vector3(xWallDim, 1f, zWallDim);
 				}
 
-				Transform yMaxExtentTF = extentsTF.FindChild("y max");
+				Transform yMaxExtentTF = extentsTF.Find("y max");
 				if (yMaxWall)
 				{
 					yMaxExtentTF.transform.localPosition = Vector3.up * yPadding;
@@ -191,7 +191,7 @@ namespace RichJoslin
 					wallCube.transform.localScale = new Vector3(xWallDim, 1f, zWallDim);
 				}
 
-				Transform xMinExtentTF = extentsTF.FindChild("x min");
+				Transform xMinExtentTF = extentsTF.Find("x min");
 				if (xMinWall)
 				{
 					xMinExtentTF.transform.localPosition = Vector3.left * xPadding;
@@ -199,7 +199,7 @@ namespace RichJoslin
 					wallCube.transform.localScale = new Vector3(1f, yWallDim, zWallDim);
 				}
 
-				Transform xMaxExtentTF = extentsTF.FindChild("x max");
+				Transform xMaxExtentTF = extentsTF.Find("x max");
 				if (xMaxWall)
 				{
 					xMaxExtentTF.transform.localPosition = Vector3.right * xPadding;
@@ -257,9 +257,9 @@ namespace RichJoslin
 
 			public Transform GetOrCreateLayer(int z)
 			{
-				Transform parentTF = this.transform.FindChild("Balls");
+				Transform parentTF = this.transform.Find("Balls");
 				string layerName = string.Format("z {0}", z);
-				Transform layerTF = parentTF.FindChild(layerName);
+				Transform layerTF = parentTF.Find(layerName);
 				if (layerTF == null)
 				{
 					layerTF = new GameObject(layerName).transform;
@@ -273,7 +273,7 @@ namespace RichJoslin
 			public Transform GetOrCreateRow(int z, int y, Transform parentTF)
 			{
 				string rowName = string.Format("y {0}", y);
-				Transform rowTF = parentTF.FindChild(rowName);
+				Transform rowTF = parentTF.Find(rowName);
 				if (rowTF == null)
 				{
 					rowTF = new GameObject(rowName).transform;
@@ -289,7 +289,7 @@ namespace RichJoslin
 			public Transform GetOrCreateColumn(int x, Transform parentTF)
 			{
 				string colName = string.Format("x {0}", x);
-				Transform colTF = parentTF.FindChild(colName);
+				Transform colTF = parentTF.Find(colName);
 				if (colTF == null)
 				{
 					colTF = new GameObject(colName).transform;
@@ -303,15 +303,15 @@ namespace RichJoslin
 			public GridBall GetGridBall(Vector3i gridCoords)
 			{
 				string layerName = string.Format("z {0}", gridCoords.z);
-				Transform layerTF = this.transform.FindChild(layerName);
+				Transform layerTF = this.transform.Find(layerName);
 				if (layerTF != null)
 				{
 					string rowName = string.Format("y {0}", gridCoords.y);
-					Transform rowTF = layerTF.FindChild(rowName);
+					Transform rowTF = layerTF.Find(rowName);
 					if (rowTF != null)
 					{
 						string colName = string.Format("x {0}", gridCoords.x);
-						Transform colTF = rowTF.FindChild(colName);
+						Transform colTF = rowTF.Find(colName);
 						if (colTF != null)
 						{
 							return colTF.GetComponentInChildren<GridBall>();

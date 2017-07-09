@@ -12,7 +12,11 @@ namespace RichJoslin
 			public BallShot ballShot { get; set; }
 			public bool isReady { get; set; }
 
-			public void Awake()
+            private SteamVR_Controller.Device device { get { return SteamVR_Controller.Input((int)trackedObj.index); } }
+            public SteamVR_TrackedObject trackedObj;
+            public SteamVR_TrackedController trackedController;
+
+            public void Awake()
 			{
 				this.isReady = false;
 			}
@@ -32,7 +36,7 @@ namespace RichJoslin
 					{
 						// TODO: decouple this so you can choose which input to use
 						if (this.ballShot.state == BallShot.State.Loaded &&
-							OVRInput.Get(OVRInput.RawAxis1D.RIndexTrigger) > 0.75f)
+                            device.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger).x > 0.75f)
 						{
 							this.ballShot.Shoot();
 						}
@@ -47,7 +51,7 @@ namespace RichJoslin
 						}
 
 						// TODO: decouple this so you can choose which input to use
-						if (OVRInput.Get(OVRInput.RawAxis1D.RIndexTrigger) > 0.25f) reload = false;
+						if (device.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger).x > 0.25f) reload = false;
 
 						if (reload)
 						{
